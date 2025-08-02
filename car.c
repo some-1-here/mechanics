@@ -13,11 +13,11 @@ double force;
 double mass;
 
 // SUVAT
-double s;
-double u;
-double v;
-double a;
-double t;
+double s = 0;
+double u = 0;
+double v = 0;
+double a = 0;
+double t = 0;
 
 int choice1;
 int choice2;
@@ -29,7 +29,7 @@ scanf("%lf", &m1);
 printf("enter mass of trailer (m2) \n");
 scanf("%lf", &m2);
 printf("enter driving force (P) \n");
-scanf("%lf,", &driving_force);
+scanf("%lf", &driving_force); // corrected ¬
 
 // fricitonless
 // F = M * A -> A = F / M
