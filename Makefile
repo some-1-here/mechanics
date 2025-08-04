@@ -2,14 +2,19 @@ CC = gcc
 CFLAGS = -Iinclude -Wall
 LDFLAGS = -lm
 
-SRC = src/Pully.c src/main_pully.c
+PULLY_SRC = src/Pully.c src/main_pully.c
+PULLY_OUT = pully_app
 
-OUT = pully_app
+TRAILER_SRC = src/Trailer.c src/main_trailer.c
+TRAILER_OUT = trailer_app
 
-$(OUT): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LDFLAGS)
+all: $(PULLY_OUT) $(TRAILER_OUT)
 
-all: $(OUT)
+$(PULLY_OUT): $(PULLY_SRC)
+	$(CC) $(CFLAGS) $(PULLY_SRC) -o $(PULLY_OUT) $(LDFLAGS)
+
+$(TRAILER_OUT): $(TRAILER_SRC)
+	$(CC) $(CFLAGS) $(TRAILER_SRC) -o $(TRAILER_OUT) $(LDFLAGS)
 
 clean:
-	rm -f $(OUT)
+	rm -f $(PULLY_OUT) $(TRAILER_OUT)
