@@ -10,6 +10,8 @@ double tension;
 // F=ma
 double force;
 double mass;
+double frictionC = 0;
+double frictionT = 0;
 
 // SUVAT
 double s = 0;
@@ -31,9 +33,16 @@ void get_masses_driving_force(){
     scanf("%lf", &driving_force);
 }
 
+void get_friction(){
+    printf("Enter friction of car (if none then type 0) \n");
+    scanf("%lf", &frictionC);
+    printf("Enter friction of trailer (if none then type 0) \n");
+    scanf("%lf", &frictionT);
+}
+
 void calculate_acceleration_tension() {
-    a = ( driving_force ) / ( m1 + m2 );
-    tension = ( m2 ) * a;
+    a = ( driving_force - frictionC - frictionT ) / ( m1 + m2 );
+    tension = ( m2  * a ) + frictionT;
 }
 
 void print_acceleration_tension() {

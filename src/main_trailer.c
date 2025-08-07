@@ -2,6 +2,7 @@
 
 int main() {
 get_masses_driving_force();
+get_friction();
 calculate_acceleration_tension();
 print_acceleration_tension();
 which_suvat();

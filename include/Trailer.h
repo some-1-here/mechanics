@@ -9,6 +9,8 @@ extern double tension;
 // F=ma
 extern double force;
 extern double mass;
+extern double frictionC;
+extern double frictionT;
 
 // SUVAT
 extern double s;
@@ -21,6 +23,7 @@ extern int choice1;
 extern int choice2;
 
 void get_masses_driving_force();
+void get_friction();
 void calculate_acceleration_tension();
 void print_acceleration_tension();
 void which_suvat();
