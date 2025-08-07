@@ -1,11 +1,11 @@
 #ifndef SLOPE_H
 #define SLOPE_H
 
-extern double co-efficiant;
+extern double Co_efficiant;
 extern double Normal;
-extern double theta;
+extern double Theta;
 extern double Tension;
-extern double mass
+extern double Mass;
 
 extern double s;
 extern double u;

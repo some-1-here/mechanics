@@ -2,11 +2,15 @@
 #include <stdio.h>
 #include <math.h>
 
-double co-efficiant = 0;
+#define DEG_TO_RAD(x) ((x) * M_PI / 180.0)
+#define RAD_TO_DEG(x) ((x) * 180 / M_PI)
+double g = 9.81;
+
+double Co_efficiant = 0;
 double Normal = 0;
-double theta = 0;
+double Theta = 0;
 double Tension = 0;
-double mass = 0'
+double Mass = 0;
 
 double s = 0;
 double u = 0;
@@ -16,33 +20,63 @@ double t = 0;
 
 void get_all_possible_values() {
 printf("Enter known values (-1 if not told)");
-printf("co-efficient");
-scanf("%lf", &co-efficiant);
-printf("Normal");
+printf("co-efficient\n");
+scanf("%lf", &Co_efficiant);
+printf("Normal\n");
 scanf("%lf", &Normal);
-printf("theta");
-scanf("%lf", &theta);
-printf("Tension");
+printf("theta\n");
+scanf("%lf", &Theta);
+printf("Tension\n");
 scanf("%lf", &Tension);
-printf("Mass");
-scanf("%lf", &mass);
-printf("SUVAT values");
-printf("s");
+printf("Mass\n");
+scanf("%lf", &Mass);
+printf("\nSUVAT values\n");
+printf("s\n");
 scanf("%lf", &s);
-printf("u");
+printf("u\n");
 scanf("%lf", &u);
-printf("v");
+printf("v\n");
 scanf("%lf", &v);
-printf("a");
+printf("a\n");
 scanf("%lf", &a);
-printf("t");
+printf("t\n");
 scanf("%lf", &t);
 }
 
 void calculate_all_possible_values() {
+//Theta = DEG_TO_RAD(Theta);
+
+// using mass and angle
+if (Mass != -1 && Theta != -1) {
+    Theta = DEG_TO_RAD(Theta);
+    Normal = Mass * g * cos(Theta);
+    printf("1");
+    Theta = RAD_TO_DEG(Theta);
+}
+else if (Mass != -1 && Normal != -1) {
+    Theta = acos(Normal / (Mass * g));
+    Theta = RAD_TO_DEG(Theta);
+    printf("2");
+}
+else if (Normal != -1 && Theta != -1) {
+    Theta = DEG_TO_RAD(Theta);
+    Mass = Normal / (g * cos(Theta));
+    Theta = RAD_TO_DEG(Theta);
+    printf("3");
+}
 
 }
 
 void print_all_possible_values() {
-
+printf("co-efficient=%f\n", Co_efficiant);
+printf("Normal=%f\n", Normal);
+printf("theta=%f\n", Theta);
+printf("Tension=%f\n", Tension);
+printf("Mass=%f\n", Mass);
+printf("\nSUVAT values\n");
+printf("s=%f\n", s);
+printf("u=%f\n", u);
+printf("v=%f\n", v);
+printf("a=%f\n", a);
+printf("t=%f\n", t);
 }
