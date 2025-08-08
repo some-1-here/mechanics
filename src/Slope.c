@@ -67,6 +67,33 @@ else if (Normal != -1 && Theta != -1) {
 
 }
 
+void Test() {
+if (Co_efficiant != -1 && Tension != -1) {
+    Theta = DEG_TO_RAD(Theta);
+    a = (-Co_efficiant * Mass * g * cos(Theta)) + Tension - (Mass * g * sin(Theta)) / Mass;
+    Theta = RAD_TO_DEG(Theta);
+}
+
+if (Co_efficiant != -1 && a != -1) {
+    Theta = DEG_TO_RAD(Theta);
+    Tension = (Mass * a) + (Co_efficiant * Mass * g * cos(Theta)) + (Mass * g * sin(Theta));
+    Theta = RAD_TO_DEG(Theta);
+}
+
+if (Tension != -1 && a != -1) {
+    Theta = DEG_TO_RAD(Theta);
+    Co_efficiant = ((Mass * a) + (Mass * g * sin(Theta)) - Tension) / (Mass * g * cos(Theta));
+    Theta = RAD_TO_DEG(Theta);
+}
+
+}
+
+void component_weights(){
+    printf("Weight components");
+    printf("%f * Sin(%f)", Mass * g, Theta);
+    printf("%f * Cos(%f)", Mass * g, Theta);
+}
+
 void print_all_possible_values() {
 printf("co-efficient=%f\n", Co_efficiant);
 printf("Normal=%f\n", Normal);

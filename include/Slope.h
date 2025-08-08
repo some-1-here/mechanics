@@ -16,5 +16,7 @@ extern double t;
 void get_all_possible_values();
 void calculate_all_possible_values();
 void print_all_possible_values();
+void Test();
+void component_weights();
 
 #endif
