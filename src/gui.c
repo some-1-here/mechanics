@@ -7,24 +7,15 @@
 #define SCREEN_WIDTH 480
 #define SCREEN_HEIGHT 600
 
-typedef struct {
-    SDL_Texture *texture;
-    SDL_Rect rect;
-} TextObject;
+void addText(SDL_Renderer *renderer, TTF_Font *font, const char *msg, SDL_Color color, int x, int y) {
+	SDL_Surface *surface = TTF_RenderUTF8_Blended(font, msg, color);
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-TextObject createText(SDL_Renderer *renderer, TTF_Font *font, const char *msg, SDL_Color color, int x, int y) {
-    TextObject textObj;
-    SDL_Surface *surface = TTF_RenderUTF8_Blended(font, msg, color);
+	SDL_Rect dstRect = {x, y, surface->w, surface->h};
+	SDL_RenderCopy(renderer, texture, NULL, &dstRect);
 
-    textObj.texture = SDL_CreateTextureFromSurface(renderer, surface);
-    textObj.rect.x = x;
-    textObj.rect.y = y;
-    textObj.rect.w = surface->w;
-    textObj.rect.h = surface->h;
-
-    SDL_FreeSurface(surface);
-    return textObj;
-
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
 }
 
 int main() {
@@ -59,14 +50,17 @@ while (running) {
 	// set render to black and fill screen with black
 	SDL_SetRenderDrawColor(renderer, 30, 30, 46, 255);
 	SDL_RenderClear(renderer);
+// void addText(SDL_Renderer *renderer, TTf_Font *font, const char *msg, SDL_Color color, int x, int y)
 
 	// draw panel
 	roundedBoxRGBA(renderer, 20, 60, 460, 540, 16, 37, 37, 55, 255);
 
 	// draw title image
 	SDL_Color white = {255, 255, 255, 255};
-	TextObject title = createText(renderer, font, "calculator", white, 170, 15);
-	SDL_RenderCopy(renderer, title.texture, NULL, &title.rect);
+	addText(renderer, font, "calculator", white, 170, 15);
+
+	SDL_Color grey = {170, 170, 170, 255};
+	addText(renderer, font, "Mass 1", grey, 30, 70);
 
 	// actually makes the renderer visible and so is drawn
 	SDL_RenderPresent(renderer);
